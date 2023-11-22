@@ -3,26 +3,16 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E4121)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [HomeController.cs](./CS/E4121/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/E4121VB/Controllers/HomeController.vb))
-* [XtraReport1.cs](./CS/E4121/Controllers/XtraReport1.cs) (VB: [XtraReport1.vb](./VB/E4121VB/Controllers/XtraReport1.vb))
-* [LargeDatabaseDataProvider.cs](./CS/E4121/Models/LargeDatabaseDataProvider.cs) (VB: [LargeDatabaseDataProvider.vb](./VB/E4121VB/Models/LargeDatabaseDataProvider.vb))
-* [GridViewPartial.cshtml](./CS/E4121/Views/Home/_GridViewPartial.cshtml) (VB: [GridViewPartial.vbhtml](./VB/E4121VB/Views/Home/_GridViewPartial.vbhtml))
-* [Index.cshtml](./CS/E4121/Views/Home/Index.cshtml) (VB: [Index.vbhtml](./VB/E4121VB/Views/Home/Index.vbhtml))
-<!-- default file list end -->
-# GridView - BindToLINQ - How to export a large amount of filtered data with Reports
+# Grid View for ASP.NET MVC - How to use Reports to export a large amount of filtered data
 
+[Grid View](https://docs.devexpress.com/AspNetMvc/8966/components/grid-view) export mechanism has the following limitation: it is impossible to export a lot of filtered data, because the mechanism requests all data from a database and then filters it. Thus, a request can be fulfilled, and the 'System.OutOfMemoryException' exception occurs. To resolve this issue, request filtered data yourself and export it using the **XtraReports Suite**. 
 
-<p>At present our MVCxGridView export mechanism has some limitations: it is impossible to export a lot of filtered data, because the mechanism requests all data from a database and then filters it. Thus, a request can be fulfilled, and the 'System.OutOfMemoryException' exception occurs. As a solution, request filtered data yourself and export it using the XtraReports Suite. This example demonstrates how you can do this using LINQ-to-SQL.</p>
-<p>To pass the FilterExpression to a Controller's Action, obtain and save it to GridView CustomJSProperties in CustomJSProperties:</p>
-<br>
-
+This example demonstrates how you can do this using LINQ-to-SQL.
+To pass the `FilterExpression` to a Controller's Action, obtain and save it to a property in `CustomJSProperties` property:
 
 ```cs
-settings.CustomJSProperties = (s, e) =>
-{
+settings.CustomJSProperties = (s, e) => {
 	MVCxGridView gridView = (MVCxGridView)s;
 	e.Properties["cpGridFilterExpression"] = gridView.FilterExpression;
 };
@@ -35,9 +25,7 @@ settings.CustomJSProperties = Sub(s, e)
 End Sub
 ```
 
-
-<p>When a user clicks the Export data, take the filter expression from GridView CustomJSProperties and add it to the collection of jQuery selector parameters.</p>
-
+When a user clicks the **Export to XLSx** button, the filter expression from **GridView** `CustomJSProperties` property and add it to the collection of jQuery selector parameters.
 
 ```js
 function onClick(s, e) {
@@ -47,11 +35,17 @@ function onClick(s, e) {
 }
 ```
 
+## Files to Review
 
-<p>The XtraReport class instance that's used in this Code Example is added as described in the <a href="https://documentation.devexpress.com/XtraReports/CustomDocument9974.aspx">Lesson 1 - Create a Static Report in ASP.NET MVC</a> tutorial. The report controls are bound to data using the <a href="https://documentation.devexpress.com/XtraReports/CustomDocument2433.aspx">Embedded Fields (Mail Merge)</a> feature.<br><br>You can learn more about approaches used in this example in the following resources:</p>
-<p><a href="http://documentation.devexpress.com/#XtraReports/CustomDocument4784"><u>How to: Create a Table Report</u></a><br> <a href="https://www.devexpress.com/Support/Center/p/E573">How to create a web based report at runtime</a><br> <a href="https://www.devexpress.com/Support/Center/p/E2596">How to convert the CriteriaOperator to a lambda expression, so, the latter expression can be used in the IQueriable source</a></p>
-<p><a href="https://www.devexpress.com/Support/Center/p/S39667">GridView Extension - Provide the capability to export large LINQ data</a></p>
+* [HomeController.cs](./CS/E4121/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/E4121VB/Controllers/HomeController.vb))
+* [GridViewPartial.cshtml](./CS/E4121/Views/Home/_GridViewPartial.cshtml) (VB: [GridViewPartial.vbhtml](./VB/E4121VB/Views/Home/_GridViewPartial.vbhtml))
+* [Index.cshtml](./CS/E4121/Views/Home/Index.cshtml) (VB: [Index.vbhtml](./VB/E4121VB/Views/Home/Index.vbhtml))
 
-<br/>
+## Documentation
+* [Create a Report in Visual Studio](https://docs.devexpress.com/XtraReports/14989/get-started-with-devexpress-reporting/create-a-report-in-visual-studio)
+* [Use Embedded Fields (Mail Merge)](https://docs.devexpress.com/XtraReports/2433/detailed-guide-to-devexpress-reporting/use-report-controls/bind-report-controls-to-data/use-embedded-fields-mail-merge)
+* [Create a Table Report](https://docs.devexpress.com/XtraReports/4784/create-reports/create-a-table-report)
 
+## More Examples
 
+* [How to convert the CriteriaOperator to a lambda expression to use it for IQueryable](https://github.com/DevExpress-Examples/XDL_how-to-convert-the-criteriaoperator-to-a-lambda-expression-to-use-it-for-iqueryable-e2596)
