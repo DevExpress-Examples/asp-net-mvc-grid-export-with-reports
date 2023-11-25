@@ -5,10 +5,25 @@
 
 # Grid View for ASP.NET MVC - How to use Reports to export a large amount of filtered data
 
-When you export a large amount of of filtered data, [Grid View](https://docs.devexpress.com/AspNetMvc/8966/components/grid-view) export mechanis requests all data from a database and then filters it. Thus, a request can be fulfilled, and the 'System.OutOfMemoryException' exception occurs. To resolve this issue, request filtered data yourself and export it using the **XtraReports Suite**. 
+This example demonstrates how to export a large amount of filtered data using **LINQ-to-SQL**.
 
-This example demonstrates how you can do this using LINQ-to-SQL.
-To pass the `FilterExpression` to a Controller's Action, obtain and save it to a property in `CustomJSProperties` property:
+## Implementation Details
+
+When you export a large amount of of filtered data, [Grid View](https://docs.devexpress.com/AspNetMvc/8966/components/grid-view) export mechanism requests all data from a database and then filters it. Such request can be fulfilled and the `System.OutOfMemoryException` exception can occur. To resolve this issue, request filtered data manually and export it using the **XtraReports Suite**. 
+
+```csharp
+public ActionResult ExportTo(string filterString) {
+    CriteriaOperator filterCriteria = CriteriaOperator.Parse(filterString);
+    IList<Email> emails = LargeDatabaseDataProvider.GetEmailsByFilter(filterCriteria);
+
+    XtraReport1 report = new XtraReport1();
+    report.DataSource = emails;
+    ExportReport(report, "largeData", true, "Xlsx");
+    return GridViewPartial();
+}
+```
+
+To pass the `FilterExpression` to a controller's action, obtain and save it to a property in `CustomJSProperties` property:
 
 ```cs
 settings.CustomJSProperties = (s, e) => {
