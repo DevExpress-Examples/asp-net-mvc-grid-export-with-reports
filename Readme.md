@@ -23,7 +23,7 @@ public ActionResult ExportTo(string filterString) {
 }
 ```
 
-To pass the `FilterExpression` to a controller's action, obtain and save it to a property in `CustomJSProperties` property:
+To pass the `FilterExpression` to a controller's action, obtain and save the expression in a custom client property:
 
 ```cs
 settings.CustomJSProperties = (s, e) => {
@@ -39,7 +39,7 @@ settings.CustomJSProperties = Sub(s, e)
 End Sub
 ```
 
-When a user clicks the **Export to XLSx** button, the filter expression from **GridView** `CustomJSProperties` property and add it to the collection of jQuery selector parameters.
+When a user clicks the **Export to XLSx** button, the `Click` event handler adds filter expression contained in the custom client property to the collection of jQuery selector parameters.
 
 ```js
 function onClick(s, e) {
