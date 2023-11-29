@@ -9,7 +9,7 @@ This example demonstrates how to export a large amount of filtered data using **
 
 ## Implementation Details
 
-When you export a large amount of of filtered data, [Grid View](https://docs.devexpress.com/AspNetMvc/8966/components/grid-view) export mechanism requests all data from a database and then filters it. Such request can be fulfilled and the `System.OutOfMemoryException` exception can occur. To resolve this issue, request filtered data manually and export it using the **XtraReports Suite**. 
+When you export a large amount of filtered data, [Grid View](https://docs.devexpress.com/AspNetMvc/8966/components/grid-view) export mechanism requests all data from a database and then filters it. Such a request can be fulfilled and the `System.OutOfMemoryException` exception can occur. To resolve this issue, request filtered data and export it using the **XtraReports Suite**. 
 
 ```csharp
 public ActionResult ExportTo(string filterString) {
