@@ -66,7 +66,7 @@ function onClick(s, e) {
 
 * [How to convert the CriteriaOperator to a lambda expression to use it for IQueryable](https://github.com/DevExpress-Examples/XDL_how-to-convert-the-criteriaoperator-to-a-lambda-expression-to-use-it-for-iqueryable-e2596)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-mvc-grid-export-with-reports&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-mvc-grid-export-with-reports&~~~was_helpful=no)
 
